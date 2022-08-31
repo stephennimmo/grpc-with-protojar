@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.snimmo.demo";
+option java_outer_classname = "CustomerGrpcProto";
+
+package customer;
+
+import "google/protobuf/empty.proto";
+import "customer/customer.proto";
+
+service CustomerGrpc {
+    rpc Get (google.protobuf.Empty) returns (CustomerList) {}
+    rpc GetById (CustomerId) returns (Customer) {}
+    rpc Save (Customer) returns (Customer) {}
+    rpc Update (Customer) returns (Customer) {}
+}
+
+message CustomerList {
+    repeated Customer customers = 1;
+}
+
+message CustomerId {
+    int32 value = 1;
+}
